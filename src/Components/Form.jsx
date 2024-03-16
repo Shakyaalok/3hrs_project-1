@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 
 
 const Form = (props) =>{
@@ -7,6 +7,11 @@ const Form = (props) =>{
     const [name,setName] = useState('');
     const [url,setUrl] = useState('');
 
+
+    useEffect(()=>{
+        setName(props.name);
+        setUrl(props.url)
+    },[props.name,props.url])
 
     const nameHandler = (e) =>{
        setName(e.target.value);

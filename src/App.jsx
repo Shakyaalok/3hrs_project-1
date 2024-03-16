@@ -7,9 +7,11 @@ import UrlLists from './Components/UrlLists';
 function App() {
       
   const [links,setLinks] = useState([
-    { id:'1',name:'google',url:'www.google.com'},
-    {id:'2',name:'youtube',url:'www.youtube.com'}
+    { id:'1',name:'google',url:'https://www.google.com/'},
+    {id:'2',name:'youtube',url:'https://www.youtube.com/'}
   ])
+
+  const [editformData,seteditformData] = useState('')
   
 
   const TranserferDataHandler = (data) => {
@@ -20,15 +22,17 @@ function App() {
         setLinks(prevState=>[addingId,...prevState])
   }
 
-  
+  const edithandler = (editData) =>{
+    seteditformData(editData)
+  }
 
   return (
     <div className="App">
-     <Form onTranserferData={TranserferDataHandler}/>
+     <Form onTranserferData={TranserferDataHandler} name={editformData.name} url={editformData.url} />
      {
       links.map((itm)=>{
         return(
-        <UrlLists key={itm.id} id={itm.id} name={itm.name} url={itm.url} />)
+        <UrlLists key={itm.id} id={itm.id} name={itm.name} url={itm.url} onEdit={edithandler}/>)
         
       })
      }

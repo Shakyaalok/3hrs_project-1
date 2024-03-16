@@ -1,0 +1,6 @@
+.lists {
+    display: flex;
+    justify-content: space-evenly;
+    gap: .5rem;
+    align-items: center;
+}
