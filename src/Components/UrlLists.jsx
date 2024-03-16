@@ -5,6 +5,7 @@ const UrlLists = (props) => {
 
 const editDetails =() =>{
     const editData = {
+        id:props.id,
         name:props.name,
         url:props.url
     }

@@ -15,11 +15,21 @@ function App() {
   
 
   const TranserferDataHandler = (data) => {
-         const addingId = {
-          ...data,
-          id:Math.random().toString(),
+         let index = links.findIndex(itm=>itm.name===data.name);
+         if(index!==-1){
+          // if exists then replace the old data to the new
+            const existedData = [...links];
+            existedData[index] = data;
+            setLinks(existedData)
+         }else{
+         // otherwise add the new data
+          const addingId = {
+            ...data,
+            id:Math.random().toString(),
+           }
+          setLinks(prevState=>[addingId,...prevState])
          }
-        setLinks(prevState=>[addingId,...prevState])
+       
   }
 
   const edithandler = (editData) =>{
@@ -28,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-     <Form onTranserferData={TranserferDataHandler} name={editformData.name} url={editformData.url} />
+     <Form onTranserferData={TranserferDataHandler} name={editformData.name} url={editformData.url} id={editformData.id}/>
      {
       links.map((itm)=>{
         return(
