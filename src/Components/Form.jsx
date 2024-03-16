@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 
-const Form = () =>{
+const Form = (props) =>{
 
 
     const [name,setName] = useState('');
@@ -18,7 +18,13 @@ const Form = () =>{
 
     const submitHandler = (e) =>{
        e.preventDefault();
-       console.log(name,url);
+      
+       const data = {
+        name:name,
+        url:url
+       }
+       console.log(data)
+       props.onTranserferData(data)
        setName('');
        setUrl('');
     }
