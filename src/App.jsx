@@ -36,13 +36,19 @@ function App() {
     seteditformData(editData)
   }
 
+  const removeHandler = (deleteData) =>{
+      const updatedData = links.filter((itm)=>itm.name !== deleteData.name);
+      console.log(updatedData)
+      setLinks(updatedData)     
+  }
+
   return (
     <div className="App">
      <Form onTranserferData={TranserferDataHandler} name={editformData.name} url={editformData.url} id={editformData.id}/>
      {
       links.map((itm)=>{
         return(
-        <UrlLists key={itm.id} id={itm.id} name={itm.name} url={itm.url} onEdit={edithandler}/>)
+        <UrlLists key={itm.id} id={itm.id} name={itm.name} url={itm.url} onEdit={edithandler} onRemove={removeHandler}/>)
         
       })
      }

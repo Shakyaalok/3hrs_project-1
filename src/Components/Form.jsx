@@ -7,11 +7,16 @@ const Form = (props) =>{
     const [name,setName] = useState('');
     const [url,setUrl] = useState('');
 
-
-    useEffect(()=>{
-        setName(props.name);
-        setUrl(props.url)
-    },[props.name,props.url])
+// if we dont include these below if then a warning of controlled or uncontrolled components occurs
+    useEffect(() => {
+        if (props.name !== undefined) {
+            setName(props.name);
+        }
+        if (props.url !== undefined) {
+            setUrl(props.url);
+        }
+    }, [props.name, props.url]);
+    
 
     const nameHandler = (e) =>{
        setName(e.target.value);
@@ -28,7 +33,6 @@ const Form = (props) =>{
         name:name,
         url:url
        }
-       console.log(data)
        props.onTranserferData(data)
        setName('');
        setUrl('');
